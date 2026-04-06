@@ -1,0 +1,15 @@
+-- Description: Dynamic full backup script
+-- Author: Darshan
+
+DECLARE @Path VARCHAR(200) = 'F:\SQLBackups\';
+DECLARE @FileName VARCHAR(200);
+DECLARE @FullPath VARCHAR(500);
+
+SET @FileName = 'DBA_Monitoring_Lab_' 
++ CONVERT(VARCHAR(8), GETDATE(), 112) + '.bak';
+
+SET @FullPath = @Path + @FileName;
+
+BACKUP DATABASE DBA_Monitoring_Lab
+TO DISK = @FullPath
+WITH INIT;

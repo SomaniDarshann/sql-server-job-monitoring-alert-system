@@ -1,0 +1,28 @@
+-- Description: Database and tables setup
+-- Author: Darshan
+
+CREATE DATABASE DBA_Monitoring_Lab;
+GO
+
+USE DBA_Monitoring_Lab;
+GO
+
+CREATE TABLE Customers
+(
+    CustomerID INT IDENTITY PRIMARY KEY,
+    Name VARCHAR(100),
+    City VARCHAR(50),
+    CreatedDate DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Orders
+(
+    OrderID INT IDENTITY PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATETIME DEFAULT GETDATE(),
+    Amount DECIMAL(10,2),
+    Status VARCHAR(20)
+);
+
+CREATE INDEX idx_orders_customer_date
+ON Orders (CustomerID, OrderDate);
